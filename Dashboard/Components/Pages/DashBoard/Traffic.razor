@@ -1,0 +1,77 @@
+﻿<div class="col-lg-3">
+    <div class="card p-3 h-100">
+        <div class="col-lg-12 fw-bold">Traffic</div>
+        <div style="width:100%; min-height:200px;">
+            <ApexChart TItem="Order" options="options">
+                <ApexPointSeries TItem="Order"
+                                 Items="Orders"
+                                 SeriesType="SeriesType.Donut"
+                                 Name="Gross Value"
+                                 XValue="@(e => e.Country)"
+                                 YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                                 OrderByDescending="e=>e.Y" />
+            </ApexChart>
+        </div>
+        <div class="d-flex gap-4 mt-4 text-center">
+            @foreach (var item in Data)
+            {
+                <div class="text-center">
+                    <div class="fw-bold fs-6">@item.Percentage%</div>
+                    <div class="d-flex align-items-center gap-1">
+                        <span style="background-color:@item.Color;" class="rounded-circle-label">
+                        </span>
+                        <span class="donut-span-font-size">@item.Label</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@code{
+    private List<Order> Orders = new()
+    {
+        // France
+        new() { Country = "FaceBook",  GrossValue = 850  },
+        new() { Country = "YouTube",  GrossValue = 1200 },
+        new() { Country = "Direct Search",  GrossValue = 630  },
+
+        // Brazil
+        new() { Country = "FaceBook",  GrossValue = 400  },
+        new() { Country = "YouTube",  GrossValue = 520  },
+        new() { Country = "Direct Search",  GrossValue = 310  },
+
+        // Sweden
+        new() { Country = "FaceBook",  GrossValue = 750  },
+        new() { Country = "YouTube",  GrossValue = 890  },
+        new() { Country = "Direct Search",  GrossValue = 460  },
+
+    };
+    private List<Order> Data = new()
+    {
+        new Order { Percentage = 34, Label = "Facebook",      Color = "#2196F3" },
+        new Order { Percentage = 55, Label = "Youtube",       Color = "#FF5722" },
+        new Order { Percentage = 11, Label = "Direct Search", Color = "#FFC107" }
+    };
+    private ApexChartOptions<Order> options = new()
+    {
+        Chart = new Chart
+        {
+            Type = ChartType.Donut
+        },
+        Labels = new List<string> { "Facebook", "Youtube", "Direct Search" },
+        Colors = new List<string> { "#1E88E5", "#FF5722", "#FBC02D" },
+        DataLabels = new DataLabels
+        {
+            Enabled = false
+        },
+        Legend = new Legend
+        {
+            Show = false
+        },
+
+        Stroke = new Stroke
+        {
+            Width = 0
+        }
+    };
+}

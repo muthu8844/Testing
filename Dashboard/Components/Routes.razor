@@ -1,0 +1,12 @@
+@inject NavigationManager Navigation
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+            <NotAuthorized>
+                @{ Navigation.NavigateTo("/login", forceLoad: true); }
+            </NotAuthorized>
+            <Authorizing><p>Checking...</p></Authorizing>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>

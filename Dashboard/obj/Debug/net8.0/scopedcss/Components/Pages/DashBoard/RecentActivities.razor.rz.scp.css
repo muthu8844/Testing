@@ -1,0 +1,116 @@
+:host[b-5azehq8bj4] {
+    display: block;
+    background: #f4f6fb;
+    padding: 40px;
+}
+
+/* Card */
+.recent-activities-card[b-5azehq8bj4] {
+    background: #ffffff !important;
+    border-radius: 5px;
+    padding: 10px 28px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+    max-width: 430px;
+}
+
+    /* Title */
+    .recent-activities-card h3[b-5azehq8bj4] {
+        
+        font-weight: 700;
+        
+        color: #111827;
+    }
+
+/* Activity item */
+.activity-item[b-5azehq8bj4] {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 22px 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+    .activity-item:last-child[b-5azehq8bj4] {
+        border-bottom: none;
+    }
+
+/* Icon circle */
+.icon-circle[b-5azehq8bj4] {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+/* Softer modern colors */
+.bg-purple[b-5azehq8bj4] {
+    background: #8b80f9;
+}
+
+.bg-pink[b-5azehq8bj4] {
+    background: #ff6f91;
+}
+
+.bg-blue[b-5azehq8bj4] {
+    background: #4f86f7;
+}
+
+.bg-yellow[b-5azehq8bj4] {
+    background: #ffb703;
+}
+
+.bg-green[b-5azehq8bj4] {
+    background: #4caf50;
+}
+
+/* Text styling */
+.activity-content[b-5azehq8bj4] {
+    display: flex;
+    flex-direction: column;
+}
+
+.title[b-5azehq8bj4] {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #374151;
+    /* margin-bottom: 3px;*/
+}
+
+.subtitle[b-5azehq8bj4] {
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.time[b-5azehq8bj4] {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 4px;
+   
+}
+.timeline[b-5azehq8bj4] {
+    position: relative;
+}
+
+    /* Vertical line */
+    .timeline[b-5azehq8bj4]::before {
+        content: "";
+        position: absolute;
+        left: 109px;
+        top: 49px;
+        bottom: 44px;
+        width: 3px;
+        background: #e5e7eb;
+    }
+
+/* Each row */
+.timeline-item[b-5azehq8bj4] {
+    display: grid;
+    grid-template-columns: 90px 70px 1fr;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+}

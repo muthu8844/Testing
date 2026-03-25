@@ -1,0 +1,236 @@
+﻿<div class="row g-3">
+
+    <!-- Card 1: Revenue Status (Blue) -->
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card" style="background: #d9eefa;">
+
+            <div class="metric-card-title">Revenue Status</div>
+            <div class="d-flex justify-content-between align-items-center">
+                @if (showSparkline)
+                {
+                    <ApexChart TItem="MetricBarChartData" Options="metricBarChartDataPrimaryOptions" Height="60" Width="100">
+                        <ApexPointSeries TItem="MetricBarChartData"
+                                         Items="metricBarChartDataPrimary"
+                                         Name=""
+                                         SeriesType="SeriesType.Bar"
+                                         XValue="@(e => e.X)"
+                                         YValue="@(e => e.Y)" />
+                    </ApexChart>
+                }
+                <div class="text-end">
+                    <div class="stat-amount text-primary"><i class="fa fa-long-arrow-up"></i> $432</div>
+                    <div class="stat-label">Jan 01 - Jan 10</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card h-100 d-flex flex-column"
+             style="background: linear-gradient(135deg, #fef9e7, #fdeeba); overflow: hidden; position: relative; min-height: 130px;">
+
+            <div style="position: relative; z-index: 1;">
+                <div class="metric-card-title">Page View</div>
+                <div class="stat-amount text-warning">
+                    <i class="fa fa-long-arrow-up"></i> $432
+                </div>
+            </div>
+
+            <!-- Chart absolutely positioned at bottom -->
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 0;">
+                @if (showSparkline)
+                {
+                    <ApexChart TItem="MetricBarChartData"
+                               Options="metricAreaChartDataPrimaryOptions"
+                               Height="80">
+                        <ApexPointSeries TItem="MetricBarChartData"
+                                         Items="metricAreaChartDataPrimary"
+                                         Name=""
+                                         SeriesType="SeriesType.Area"
+                                         XValue="@(e => e.X)"
+                                         YValue="@(e => e.Y)" />
+                    </ApexChart>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card" style="background: linear-gradient(135deg, #fdecea, #fbd7d4);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="metric-card-title">Bounce Rate</div>
+                    <div class="stat-amount text-danger"><i class="fa fa-long-arrow-up"></i> $432</div>
+                    <select class="form-select form-select-sm w-auto mt-1">
+                        <option>Monthly</option>
+                        <option>Weekly</option>
+                    </select>
+                </div>
+
+                @if (showSparkline)
+                {
+                    <div style="width: 120px; flex-shrink: 0;">
+                        <ApexChart TItem="MetricBarChartData"
+                                   Options="metricAreaChartDataSecondaryOptions"
+                                   Height="60"
+                                   Width="120">
+                            <ApexPointSeries TItem="MetricBarChartData"
+                                             Items="metricAreaChartDataSecondary"
+                                             Name=""
+                                             SeriesType="SeriesType.Area"
+                                             XValue="@(e => e.X)"
+                                             YValue="@(e => e.Y)" />
+                        </ApexChart>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card" style="background: #f0dcff;">
+            <div class="metric-card-title">Revenue Status</div>
+            <div class="d-flex justify-content-between align-items-center">
+                @if (showSparkline)
+                {
+                    <ApexChart TItem="MetricBarChartData" Options="metricBarChartDataSecondaryOptions" Height="60" Width="100">
+                        <ApexPointSeries TItem="MetricBarChartData"
+                                         Items="metricBarChartDataPrimary"
+                                         Name=""
+                                         SeriesType="SeriesType.Bar"
+                                         XValue="@(e => e.X)"
+                                         YValue="@(e => e.Y)" />
+                    </ApexChart>
+                }
+                <div class="text-end">
+                    <div class="stat-amount text-primary" style="color:#a046f5!important"><i class="fa fa-long-arrow-up"></i> $432</div>
+                    <div class="stat-label">Jan 01 - Jan 10</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ @code{
+    private bool showSparkline = true;
+    private List<MetricBarChartData> metricBarChartDataPrimary = new()
+    {
+        new() { X = "1", Y = 6  },
+    new() { X = "2", Y = 10 },
+    new() { X = "3", Y = 4  },  // ← short middle bar
+    new() { X = "4", Y = 8  },
+    new() { X = "5", Y = 11 },
+    new() { X = "6", Y = 5  },
+    new() { X = "7", Y = 9  },
+    new() { X = "8", Y = 7  },
+    new() { X = "9", Y = 3  },
+    };
+    private List<MetricBarChartData> metricAreaChartDataPrimary = new()
+    {
+       new() { X = "1",  Y = 8  },
+    new() { X = "2",  Y = 15 },
+    new() { X = "3",  Y = 5  },
+    new() { X = "4",  Y = 19 },
+    new() { X = "5",  Y = 3 },
+    new() { X = "6",  Y = 18 },
+    new() { X = "7",  Y = 5 },
+    new() { X = "8",  Y = 10 },
+    new() { X = "9",  Y = 6 }
+
+    };
+    private List<MetricBarChartData> metricAreaChartDataSecondary = new()
+    {
+        new() { X = "1", Y = 5  },
+    new() { X = "2", Y = 9  },  // up
+    new() { X = "3", Y = 4  },  // down
+    new() { X = "4", Y = 8  },  // up
+    new() { X = "5", Y = 3  },  // down
+    new() { X = "6", Y = 7  },  // up
+    new() { X = "7", Y = 5  },
+    };
+
+    // Red sparkline data (wavy)
+    private List<MetricBarChartData> metricBarChartDataSecondary = new()
+    {
+        new() { X = "1", Y = 10 },
+        new() { X = "2", Y = 5  },
+        new() { X = "3", Y = 12 },
+        new() { X = "4", Y = 4  },
+        new() { X = "5", Y = 9  },
+        new() { X = "6", Y = 6  },
+    };
+    private ApexChartOptions<MetricBarChartData> metricBarChartDataPrimaryOptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar { Show = false },
+            Sparkline = new ChartSparkline { Enabled = true }
+        },
+        Colors = new List<string> { "#4FC3F7" },
+        Stroke = new Stroke { Curve = Curve.Smooth, Width = new List<int> { 2 } },
+        DataLabels = new DataLabels { Enabled = false },
+        Tooltip = new Tooltip { Enabled = false }
+    };
+
+    // Red spark options
+    private ApexChartOptions<MetricBarChartData> metricBarChartDataSecondaryOptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar { Show = false },
+            Sparkline = new ChartSparkline { Enabled = true }
+        },
+        Colors = new List<string> { "#a046f5" },
+        Stroke = new Stroke { Curve = Curve.Smooth, Width = new List<int> { 2 } },
+        DataLabels = new DataLabels { Enabled = false },
+        Tooltip = new Tooltip { Enabled = false }
+    };
+    private ApexChartOptions<MetricBarChartData> metricAreaChartDataPrimaryOptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar { Show = false },
+            Sparkline = new ChartSparkline { Enabled = true },
+            Width = "100%"
+        },
+        Colors = new List<string> { "#FFC107" },
+        Stroke = new Stroke { Curve = Curve.Straight, Width = new List<int> { 2 } },
+        Fill = new Fill
+        {
+            Type = new List<FillType> { FillType.Gradient },
+            Gradient = new FillGradient { OpacityFrom = 0.4, OpacityTo = 0.0 }
+        },
+        DataLabels = new DataLabels { Enabled = false },
+        Tooltip = new Tooltip { Enabled = false }
+    };
+    private ApexChartOptions<MetricBarChartData> metricAreaChartDataSecondaryOptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar { Show = false },
+            Sparkline = new ChartSparkline { Enabled = true },
+        },
+        Colors = new List<string> { "#FF6B35" },
+        Stroke = new Stroke
+        {
+            Curve = Curve.Smooth,
+            Width = new List<int> { 2 },
+        },
+        Fill = new Fill
+        {
+            Type = new List<FillType> { FillType.Solid },
+            Opacity = new List<double> { 0 }  // transparent fill = line only
+        },
+        Markers = new Markers
+        {
+            Size = 4,
+            Colors = new List<string> { "#FF6B35" },
+            StrokeColors = new List<string> { "#FF6B35" },
+            StrokeWidth = 0,
+            Shape = ShapeEnum.Circle
+        },
+        DataLabels = new DataLabels { Enabled = false },
+        Tooltip = new Tooltip { Enabled = false },
+    };
+
+ }

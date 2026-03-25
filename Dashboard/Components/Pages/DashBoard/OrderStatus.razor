@@ -1,0 +1,87 @@
+﻿<div class="order-card">
+
+    <!-- Header -->
+    <div class="order-header">
+        <div class="col-lg-12">
+        <div class="col-md-12">
+            <h3>Order Status</h3>
+            <p class="subtitle">Overview of Latest Month</p>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn-add">
+                    <i class="fa-solid fa-circle-plus margin-top-1"></i> Add
+            </button>
+
+                <button class="icon-btn"><i class="fa-solid fa-circle-info"></i></button>
+            <button class="icon-btn"><i class="fas fa-trash"></i></button>
+            <button class="icon-btn"><i class="fas fa-print"></i></button>
+
+            <div class="search-box">
+                <input placeholder="Search" />
+                   
+               
+            </div>
+                <button class="icon-btn"><i class="fas fa-print"></i></button>
+        </div>
+    </div>
+    </div>
+
+    <!-- Table -->
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>INVOICE</th>
+                <th>CUSTOMERS</th>
+                <th>FROM</th>
+                <th>PRICE</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.Invoice</td>
+                    <td>@order.Customer</td>
+                    <td>@order.Country</td>
+                    <td>@order.Price</td>
+                    <td>
+                        <span class="badge @order.StatusClass">
+                            @order.Status
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Footer -->
+    <div class="table-footer">
+        <span>Showing 1 to 20 of 20 entries</span>
+
+        <div class="pagination">
+          
+            <span class="page active">1</span>
+            <span class="page">2</span>
+            <span class="page">3</span>
+            <span class="page">4</span>
+            <span class="page">5</span>
+            <span class="page">6</span>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private List<Order> orders = new()
+    {
+        new("12386","Charly Dues","Brazil","$299","Process","red"),
+        new("12386","Marko","Italy","$2642","Open","green"),
+        new("12386","Deniyl Onak","Russia","$981","On Hold","blue"),
+        new("12386","Belgiri Bastana","Korea","$369","Process","red"),
+        new("12386","Sarti Onuska","Japan","$1240","Open","green")
+    };
+
+    public record Order(string Invoice, string Customer, string Country, string Price, string Status, string StatusClass);
+}

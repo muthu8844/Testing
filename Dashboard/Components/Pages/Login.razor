@@ -1,0 +1,29 @@
+@page "/login"
+@layout EmptyLayout
+
+<PageTitle>Login</PageTitle>
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-logo">
+      <i class="fa fa-tachometer" aria-hidden="true"></i>
+      <h2>Dashboard</h2>
+    </div>
+    @if (ShowError) { <div class="alert alert-danger">Invalid username or password.</div> }
+    <form method="post" action="/api/auth/login">
+      <AntiforgeryToken />
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="Username" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="Password" required />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Sign In</button>
+    </form>
+  </div>
+</div>
+@code {
+    [SupplyParameterFromQuery(Name = "error")] private string? ErrorParam { get; set; }
+    private bool ShowError => ErrorParam == "1";
+}

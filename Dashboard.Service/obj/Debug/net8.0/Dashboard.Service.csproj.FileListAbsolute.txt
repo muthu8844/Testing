@@ -1,0 +1,12 @@
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\bin\Debug\net8.0\Dashboard.Service.deps.json
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\bin\Debug\net8.0\Dashboard.Service.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\bin\Debug\net8.0\Dashboard.Service.pdb
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.AssemblyInfoInputs.cache
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.AssemblyInfo.cs
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.csproj.CoreCompileInputs.cache
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.sourcelink.json
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\refint\Dashboard.Service.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\Dashboard.Service.pdb
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.Service\obj\Debug\net8.0\ref\Dashboard.Service.dll

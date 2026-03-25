@@ -1,0 +1,12 @@
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\bin\Debug\net8.0\Dashboard.DAL.deps.json
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\bin\Debug\net8.0\Dashboard.DAL.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\bin\Debug\net8.0\Dashboard.DAL.pdb
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.AssemblyInfoInputs.cache
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.AssemblyInfo.cs
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.csproj.CoreCompileInputs.cache
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.sourcelink.json
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\refint\Dashboard.DAL.dll
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\Dashboard.DAL.pdb
+D:\Studies\Assignment\DataKrew\Dashboard\Dashboard\Dashboard.DAL\obj\Debug\net8.0\ref\Dashboard.DAL.dll

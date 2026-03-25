@@ -1,0 +1,338 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@attribute [Authorize]
+@using ApexCharts
+
+<style>
+   
+</style>
+<div class="row g-3 mb-1">
+
+    <!-- LEFT PARTITION -->
+   
+    <div class="row g-2 mb-3">
+            <div class="col-lg-9">
+            <div class="card p-3 h-100">
+                <div class="row g-3">
+        <!-- LEFT PARTITION -->
+        <div class="col-lg-3">
+           
+                <div class="fw-bold">Dashboard</div>
+                <h3 class="fw-bold">$3,468.96</h3>
+                <small class="text-muted">Current Month Earnings</small>
+                <h4 class="fw-bold mt-2">82</h4>
+                <small class="text-muted">Current Month Sales</small>
+                <div class="mt-3">
+                    <button class="btn-summary">Last Month Summary</button>
+                </div>
+           
+        </div>
+
+        <!-- MIDDLE PARTITION -->
+        <div class="col-lg-9">
+           
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                            <ul class="nav nav-tabs border-0 area-primary-chart">
+                                <li class="nav-item">
+                                    <a class="nav-link @(activeTab == "daily" ? "active" : "") px-2 py-1"
+                                       @onclick='() => SetTab("daily")' href="#">DAILY</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(activeTab == "weekly" ? "active" : "") px-2 py-1"
+                                       @onclick='() => SetTab("weekly")' href="#">WEEKLY</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(activeTab == "monthly" ? "active" : "") px-2 py-1"
+                                       @onclick='() => SetTab("monthly")' href="#">MONTHLY</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(activeTab == "yearly" ? "active" : "") px-2 py-1"
+                                       @onclick='() => SetTab("yearly")' href="#">YEARLY</a>
+                                </li>
+                            </ul>
+                            <div class="d-flex gap-1">
+
+                                
+                                    <span class="rounded-circle-label" style="background:#4a9eff">&nbsp;</span> <span class="donut-span-font-size">Online</span>
+                               
+                                <span class="rounded-circle-label" style="background:#ff8c42">&nbsp;</span> <span class="donut-span-font-size">Store</span>
+                            </div>
+                        </div>
+                            <!-- Chart (single chart, data changes per tab) -->
+                            @if (showChart)
+                            {
+                            <ApexChart TItem="Duration" Options="areaoptions" Title="" Height="200">
+                                    <ApexPointSeries TItem="Duration"
+                                                     Items="CurrentSeries"
+                                                     Name="Current"
+                                                     SeriesType="SeriesType.Area"
+                                                     XValue="@(e => e.Month)"
+                                                     YValue="@(e => e.Value)" 
+                                                     />
+
+                                    <ApexPointSeries TItem="Duration"
+                                                     Items="PreviousSeries"
+                                                     Name="Previous"
+                                                     SeriesType="SeriesType.Area"
+                                                     XValue="@(e => e.Month)"
+                                                     YValue="@(e => e.Value)" />
+                                </ApexChart>
+                            }
+                   
+                
+                        
+           
+        </div>
+                    <div class="row g-2">
+                       
+                        <div class="col-3 d-flex">
+
+                            <div class="icon red">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <div class="balance-label">
+                                <small class="text-muted d-block">Wallet Balance</small>
+                                <span class="fw-bold">$4,567.53</span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-3 d-flex">
+
+                            <div class="icon blue">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div class="balance-label">
+                                <small class="text-muted d-block">Referral Earning</small>
+                                <span class="fw-bold">$1,689.53</span>
+                            </div>
+
+
+                        </div>
+
+                        
+                        <div class="col-3 d-flex">
+
+                            <div class="icon green">
+                                <i class="fa fa-magic"></i>
+                            </div>
+                            <div class="balance-label">
+                                <small class="text-muted d-block">Estimate Sales</small>
+                                <span class="fw-bold">$2,851.53</span>
+                            </div>
+
+
+                        </div>
+                        <div class="col-3 d-flex">
+                            
+                                <div class="icon pink">
+                                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="balance-label">
+                                <small class="text-muted d-block">Earning</small>
+                                <span class="fw-bold">$2,851.53</span>
+                                </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            </div>
+           <Traffic/>
+        </div>
+  
+    <!-- MIDDLE PARTITION (chart) -->
+  
+
+    <!-- RIGHT PARTITION (traffic donut) -->
+  
+</div><!-- end top row -->
+<!-- Metric Cards -->
+<Metrics/>
+
+<div class="row g-3 mt-2 mb-5">
+    <div class="col-md-4 col-xs-4">
+        <RecentActivities />
+    </div>
+
+    <div class="col-md-8">
+        <OrderStatus />
+    </div>
+</div>
+
+
+@code {
+    private string activeTab = "daily";
+    private bool showChart = true;
+    private List<Duration> CurrentSeries = new();
+    private List<Duration> PreviousSeries = new();
+   
+
+
+    protected override void OnInitialized()
+    {
+        SetTab("daily");
+    }
+    private async Task SetTab(string tab)
+    {
+        activeTab = tab;
+        showChart = false;
+        StateHasChanged();
+        await Task.Delay(50);  // small delay to allow DOM reset
+        CurrentSeries = CurrentData[tab];
+        PreviousSeries = PreviousData[tab];
+        showChart = true;
+        StateHasChanged();
+    }
+   
+   
+
+    // Data per tab
+    private Dictionary<string, List<Duration>> CurrentData = new()
+    {
+        ["daily"] = new()
+        {
+            new Duration { Month = "1", Value = 2  },
+            new Duration { Month = "2", Value = 40 },
+            new Duration { Month = "3", Value = 5  },
+            new Duration { Month = "4", Value = 20  },
+            new Duration { Month = "5", Value = 35 },
+            new Duration { Month = "6", Value = 9 },
+        },
+        ["weekly"] = new()
+        {
+            new Duration { Month = "1", Value = 5  },
+            new Duration { Month = "2", Value = 20 },
+            new Duration { Month = "3", Value = 10 },
+            new Duration { Month = "4", Value = 15 },
+            new Duration { Month = "5", Value = 18 },
+            new Duration { Month = "6", Value = 30 },
+        },
+        ["monthly"] = new()
+        {
+            new Duration { Month = "1", Value = 10 },
+            new Duration { Month = "2", Value = 25 },
+            new Duration { Month = "3", Value = 15 },
+            new Duration { Month = "4", Value = 20 },
+            new Duration { Month = "5", Value = 22 },
+            new Duration { Month = "6", Value = 35 },
+        },
+        ["yearly"] = new()
+        {
+            new Duration { Month = "1", Value = 20 },
+            new Duration { Month = "2", Value = 35 },
+            new Duration { Month = "3", Value = 25 },
+            new Duration { Month = "4", Value = 30 },
+            new Duration { Month = "5", Value = 28 },
+            new Duration { Month = "6", Value = 40 },
+        }
+    };
+
+    private Dictionary<string, List<Duration>> PreviousData = new()
+    {
+        ["daily"] = new()
+        {
+             new Duration { Month = "1", Value = 9 },
+            new Duration { Month = "2", Value = 35 },
+            new Duration { Month = "3", Value = 20  },
+            new Duration { Month = "4", Value = 10  },
+            new Duration { Month = "5", Value = 40 },
+            new Duration { Month = "6", Value = 5},
+        },
+        ["weekly"] = new()
+        {
+            new Duration { Month = "1", Value = 3  },
+            new Duration { Month = "2", Value = 18 },
+            new Duration { Month = "3", Value = 8  },
+            new Duration { Month = "4", Value = 12 },
+            new Duration { Month = "5", Value = 16 },
+            new Duration { Month = "6", Value = 22 },
+        },
+        ["monthly"] = new()
+        {
+            new Duration { Month = "1", Value = 8  },
+            new Duration { Month = "2", Value = 20 },
+            new Duration { Month = "3", Value = 12 },
+            new Duration { Month = "4", Value = 18 },
+            new Duration { Month = "5", Value = 19 },
+            new Duration { Month = "6", Value = 28 },
+        },
+        ["yearly"] = new()
+        {
+            new Duration { Month = "1", Value = 15 },
+            new Duration { Month = "2", Value = 28 },
+            new Duration { Month = "3", Value = 20 },
+            new Duration { Month = "4", Value = 25 },
+            new Duration { Month = "5", Value = 23 },
+            new Duration { Month = "6", Value = 33 },
+        }
+    };
+
+    private ApexChartOptions<Duration> areaoptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar { Show = false },
+            Zoom = new Zoom { Enabled = false }
+        },
+        Colors = new List<string> { "#4FC3F7", "#FFB74D" },  // blue, orange
+        Stroke = new Stroke
+        {
+            Curve = Curve.Smooth,   // ← makes lines smooth/curved
+            Width = new List<int> { 2, 2 }
+        },
+        Fill = new Fill
+        {
+            Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+            Gradient = new FillGradient
+            {
+                ShadeIntensity = 1,
+                OpacityFrom = 0.4,
+                OpacityTo = 0.05,
+                Stops = new List<double> { 0, 90, 100 }
+            }
+        },
+        Grid = new Grid
+        {
+            BorderColor = "#f1f1f1",
+            Row = new GridRow
+            {
+                Colors = new List<string> { "transparent" }
+            }
+        },
+        Xaxis = new XAxis
+        {
+            Type = XAxisType.Category,
+            AxisBorder = new AxisBorder { Show = false },
+            AxisTicks = new AxisTicks { Show = false }
+        },
+        Yaxis = new List<YAxis>
+        {
+            new YAxis
+            {
+                Min = 0,
+                Max = 40,
+                TickAmount = 7
+            }
+        },
+        Legend = new Legend
+        {
+            Show = false  // hide legend (like screenshot)
+        },
+        DataLabels = new DataLabels
+        {
+            Enabled = false
+        },
+        Tooltip = new Tooltip
+        {
+            Shared = true,
+            Intersect = false
+        }
+    };
+
+ 
+}
